@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhilesh Gajula | AWS Cloud & DevOps Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* CORE STYLES */
+        /* ═══════════════════════════════════════════════════════════════ */
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f0f2f5;
+            --accent-white: #ffffff;
+            --accent-light: #f0f0f0;
+            --accent-gray: #e8e8e8;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333333;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* NAVBAR */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            height: 60px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #000000, #4a4a4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            border: 1.5px solid #000000;
+            background: transparent;
+            color: #000000;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* HERO SECTION */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 3rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: #000000;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.8s both;
+        }
+
+        .btn-primary {
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            border: 2px solid #000000;
+            background: transparent;
+            color: #000000;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-primary:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #000000, #4a4a4a);
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image-container {
+            position: relative;
+            animation: fadeInRight 0.8s ease 0.5s both;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .hero-image-border {
+            position: absolute;
+            inset: 0;
+            border: 2px solid #1a1a1a;
+            border-radius: 50%;
+            background: rgba(26, 26, 26, 0.02);
+            opacity: 1;
+            animation: fadeIn 0.8s ease 0.7s both;
+        }
+
+        .hero-image-border::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border: 1px dashed #4a4a4a;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: rotateBorder 20s linear infinite;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: none;
+            transition: filter 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hero-image:hover {
+            filter: none;
+        }
+
+        .hero-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.6s ease 0.9s both;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            border-color: #000000;
+            color: #000000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* ABOUT SECTION */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        #about {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 3rem;
+            background: var(--bg-secondary);
+        }
+
+        .about-container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .about-content {
+            background: var(--bg-tertiary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 3rem;
+            line-height: 1.9;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* SKILLS SECTION */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        #skills {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 3rem;
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '●';
+            color: #000000;
+            font-size: 1.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .skills-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .skill-tab {
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tab.active {
+            border-color: #000000;
+            color: #000000;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-tab:hover {
+            border-color: #000000;
+            color: #000000;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: var(--bg-secondary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .skill-item:hover {
+            border-color: #000000;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* PROJECTS SECTION */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        #projects {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 3rem;
+            background: var(--bg-secondary);
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-tertiary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: #000000;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(74, 74, 74, 0.03));
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            margin-top: auto;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            color: #000000;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .project-link {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #000000;
+            background: transparent;
+            color: #000000;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* EXPERIENCE SECTION */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        #experience {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 3rem;
+        }
+
+        .experience-container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #000000, #4a4a4a, transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.7rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #000000;
+            border: 3px solid var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            width: 20px;
+            height: 20px;
+            left: -4.1rem;
+            background: #4a4a4a;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .exp-card {
+            background: var(--bg-secondary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .exp-card:hover {
+            border-color: #000000;
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .exp-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .exp-company {
+            color: #000000;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .exp-date {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #000000;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .exp-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .exp-highlights {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .exp-highlights li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #000000;
+        }
+
+        .exp-tools {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-badge {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            color: #000000;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* CONTACT SECTION - COMPACT */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        #contact {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 3rem;
+            background: var(--bg-secondary);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--bg-tertiary);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-card:hover {
+            border-color: #000000;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #000000;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            word-break: break-word;
+        }
+
+        .contact-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            border: 1px solid #000000;
+            background: transparent;
+            color: #000000;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* FOOTER */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* ANIMATIONS */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* RESPONSIVE */
+        /* ═══════════════════════════════════════════════════════════════ */
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-image-wrapper {
+                max-width: 300px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.7rem;
+            }
+
+            .timeline-item:hover::before {
+                left: -3.1rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem !important;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-brand">→ AKHILESH</div>
+        <div class="nav-links">
+            <a href="#hero" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-cta">
+            <button class="nav-btn" onclick="downloadResume()">Download CV</button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Akhilesh Gajula</h1>
+                <div class="hero-subtitle">AWS Cloud & DevOps Engineer</div>
+                <p class="hero-description">
+                    Building scalable cloud infrastructure and DevOps solutions. Transitioning from data operations and MIS reporting to cloud-native architecture, specializing in AWS services, infrastructure automation, and CI/CD pipelines.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">
+                        <i class="fas fa-arrow-right"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        Get In Touch
+                    </a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/akhileshgajulaa" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gajula-akhilesh-cloud-engineer/" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:akhilesh.gajula.it@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-border"></div>
+                    <img id="heroImage" src="profile.png" alt="Profile Photo" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="about-container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I am a Data Operations and Analytics professional with 4 years of experience as a Research Associate, specializing in data management, data analysis, MIS reporting, and operational process improvement.</p>
+                
+                <p>My experience in handling large datasets, generating insights through reports, and improving data-driven workflows has helped me build a strong foundation in problem-solving and automation.</p>
+                
+                <p>Currently, I am transitioning my career into Cloud and DevOps Engineering, with hands-on cloud and automation projects.</p> 
+                    
+                <p>I enjoy learning new technologies, building real-world projects, and applying my analytical mindset to solve technical challenges.</p>            
+                <p>My goal is to combine my data-driven experience with cloud and DevOps skills to contribute as an AWS Cloud / DevOps Engineer. Open to opportunities where I can learn, grow, and contribute to innovative cloud-based solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="skills-container">
+            <h2 class="section-title">Skills & Tools</h2>
+            <p class="section-subtitle">Technologies and tools I work with across cloud infrastructure, DevOps, and development.</p>
+            
+            <div class="skills-tabs">
+                <button class="skill-tab active" onclick="showSkillCategory(event, 'cloud')">Cloud & Infrastructure</button>
+                <button class="skill-tab" onclick="showSkillCategory(event, 'devops')">DevOps & CI/CD</button>
+                <button class="skill-tab" onclick="showSkillCategory(event, 'tools')">Tools & Platforms</button>
+                <button class="skill-tab" onclick="showSkillCategory(event, 'databases')">Databases & Data</button>
+            </div>
+
+            <div id="cloud" class="skills-grid">
+                <div class="skill-item"><div class="skill-icon">☁️</div><div class="skill-name">AWS</div></div>
+                <div class="skill-item"><div class="skill-icon">🏗️</div><div class="skill-name">EC2</div></div>
+                <div class="skill-item"><div class="skill-icon">🔌</div><div class="skill-name">VPC</div></div>
+                <div class="skill-item"><div class="skill-icon">🌐</div><div class="skill-name">Route 53</div></div>
+                <div class="skill-item"><div class="skill-icon">⚖️</div><div class="skill-name">ALB/NLB</div></div>
+                <div class="skill-item"><div class="skill-icon">🔐</div><div class="skill-name">ACM</div></div>
+                <div class="skill-item"><div class="skill-icon">🗝️</div><div class="skill-name">KMS</div></div>
+                <div class="skill-item"><div class="skill-icon">🔥</div><div class="skill-name">WAF</div></div>
+            </div>
+
+            <div id="devops" class="skills-grid" style="display:none">
+                <div class="skill-item"><div class="skill-icon">🐳</div><div class="skill-name">Docker</div></div>
+                <div class="skill-item"><div class="skill-icon">🐙</div><div class="skill-name">Kubernetes</div></div>
+                <div class="skill-item"><div class="skill-icon">📦</div><div class="skill-name">Terraform</div></div>
+                <div class="skill-item"><div class="skill-icon">⚙️</div><div class="skill-name">Ansible</div></div>
+                <div class="skill-item"><div class="skill-icon">🔄</div><div class="skill-name">Jenkins</div></div>
+                <div class="skill-item"><div class="skill-icon">🚀</div><div class="skill-name">GitLab CI</div></div>
+                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Prometheus</div></div>
+                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">ELK Stack</div></div>
+            </div>
+
+            <div id="tools" class="skills-grid" style="display:none">
+                <div class="skill-item"><div class="skill-icon">🐙</div><div class="skill-name">Git</div></div>
+                <div class="skill-item"><div class="skill-icon">📝</div><div class="skill-name">VS Code</div></div>
+                <div class="skill-item"><div class="skill-icon">🔧</div><div class="skill-name">Linux</div></div>
+                <div class="skill-item"><div class="skill-icon">🖥️</div><div class="skill-name">Bash</div></div>
+                <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
+                <div class="skill-item"><div class="skill-icon">💻</div><div class="skill-name">Shell Script</div></div>
+                <div class="skill-item"><div class="skill-icon">📋</div><div class="skill-name">YAML</div></div>
+                <div class="skill-item"><div class="skill-icon">🔌</div><div class="skill-name">APIs</div></div>
+            </div>
+
+            <div id="databases" class="skills-grid" style="display:none">
+                <div class="skill-item"><div class="skill-icon">🗄️</div><div class="skill-name">RDS</div></div>
+                <div class="skill-item"><div class="skill-icon">🍃</div><div class="skill-name">MongoDB</div></div>
+                <div class="skill-item"><div class="skill-icon">📦</div><div class="skill-name">PostgreSQL</div></div>
+                <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">Redis</div></div>
+                <div class="skill-item"><div class="skill-icon">🪣</div><div class="skill-name">S3</div></div>
+                <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">DynamoDB</div></div>
+                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">ElastiCache</div></div>
+                <div class="skill-item"><div class="skill-icon">🌳</div><div class="skill-name">Data Modeling</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="projects-container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Real-world implementations showcasing my cloud and DevOps expertise on AWS.</p>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience">
+        <div class="experience-container">
+            <h2 class="section-title">Career Journey</h2>
+            <p class="section-subtitle">My professional transition from data operations to AWS DevOps engineering with hands-on cloud infrastructure experience.</p>
+            
+            <div class="timeline" id="timeline">
+                <!-- Timeline items will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION - MOVED TO END, COMPACT SIZE -->
+    <section id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">Reach out through any of these channels to discuss cloud architecture, DevOps practices, or exciting projects.</p>
+            
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">akhilesh.gajula.it@gmail.com</div>
+                    <a href="mailto:akhilesh.gajula.it@gmail.com" class="contact-btn">Send Email</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <div class="contact-label">GitHub</div>
+                    <div class="contact-value">akhileshgajulaa</div>
+                    <a href="https://github.com/akhileshgajulaa" target="_blank" class="contact-btn">View Profile</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">Cloud Engineer</div>
+                    <a href="https://www.linkedin.com/in/gajula-akhilesh-cloud-engineer/" target="_blank" class="contact-btn">Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                <p>Crafting scalable cloud solutions | AWS Certified | DevOps Enthusiast</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Built with modern web technologies • Always learning and exploring new cloud technologies</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/akhileshgajulaa" class="footer-link" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/gajula-akhilesh-cloud-engineer/" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="mailto:akhilesh.gajula.it@gmail.com" class="footer-link">Email</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Akhilesh Gajula. All rights reserved. | <span id="lastUpdated"></span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // PROJECT DATA - EASILY EDITABLE
+        // ═══════════════════════════════════════════════════════════════
+        
+        const projects = [
+            {
+                title: "AWS High Available 3-Tier Architecture",
+                icon: "🏗️",
+                description: "Designed and deployed a highly available 3-tier architecture on AWS using VPC with public and private subnets across multiple AZs. Implemented Auto Scaling Groups with Application Load Balancer for distribution, RDS Multi-AZ for database high availability, and comprehensive Security Groups.",
+                tags: ["AWS", "VPC", "EC2", "RDS", "ALB", "Auto Scaling", "Architecture"],
+                github: "https://github.com/akhileshgajulaa",
+                demo: "#"
+            },
+            {
+                title: "AWS Highly Available Secure Java Web Application",
+                icon: "🔐",
+                description: "Deployed a secure Java web application leveraging AWS WAF for protection, ACM for SSL/TLS certificates, CloudFront for global content delivery, and Route 53 for DNS management. Implemented multi-AZ RDS and EC2 instances for high availability.",
+                tags: ["AWS", "WAF", "CloudFront", "Route 53", "ACM", "RDS", "Security"],
+                github: "https://github.com/akhileshgajulaa",
+                demo: "#"
+            },
+            {
+                title: "AWS 3-Tier Architecture with Terraform",
+                icon: "📦",
+                description: "Implemented Infrastructure as Code approach using Terraform to provision a complete 3-tier AWS architecture. Created reusable modules for VPC, EC2, RDS, and ALB with state management using S3 backend and DynamoDB for state locking.",
+                tags: ["Terraform", "IaC", "AWS", "Modules", "Automation", "Best Practices"],
+                github: "https://github.com/akhileshgajulaa",
+                demo: "#"
+            }
+        ];
+
+        // ═══════════════════════════════════════════════════════════════
+        // EXPERIENCE DATA - EASILY EDITABLE
+        // ═══════════════════════════════════════════════════════════════
+        
+        const experiences = [
+            {
+                title: "AWS Cloud & DevOps Engineer",
+                company: "Freelance | Self-Learning",
+                date: "Jun 2025 - Present",
+                description: "Actively transitioning career to DevOps and cloud engineering, building practical projects and deepening expertise in AWS.",
+                highlights: [
+                    "Designing and deploying highly available AWS infrastructure using Terraform and CloudFormation",
+                    "Implementing secure network architecture with VPC, Security Groups, and multi-AZ deployments",
+                    "Building Infrastructure as Code solutions with reusable Terraform modules",
+                    "Studying advanced AWS services: WAF, CloudFront, Route 53, ACM, and RDS"
+                ],
+                tools: ["AWS", "Terraform", "VPC", "EC2", "RDS", "CloudFront", "WAF", "ACM"]
+            },
+            {
+                title: "Research Associate | Data Operations & Analytics",
+                company: "Previous Organization",
+                date: "2022 - 2025",
+                description: "4 years of experience managing large-scale data operations, MIS reporting, and process automation.",
+                highlights: [
+                    "Managed large datasets and generated actionable insights through comprehensive MIS reports",
+                    "Automated data-driven workflows improving operational efficiency",
+                    "Developed strong problem-solving and analytical foundation",
+                    "Built expertise in data management and process improvement",
+                    "Created automated reporting systems for KPI tracking and business intelligence"
+                ],
+                tools: ["Data Analytics", "MIS Reporting", "SQL", "Data Management", "Business Intelligence"]
+            }
+        ];
+
+        // ═══════════════════════════════════════════════════════════════
+        // RENDER PROJECTS
+        // ═══════════════════════════════════════════════════════════════
+        
+        function renderProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = projects.map(project => `
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">${project.icon}</div>
+                        <div class="project-title">${project.title}</div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.github}" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                        ${project.demo !== '#' ? `<a href="${project.demo}" target="_blank" class="project-link">Demo</a>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // RENDER EXPERIENCE
+        // ═══════════════════════════════════════════════════════════════
+        
+        function renderExperience() {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = experiences.map(exp => `
+                <div class="timeline-item">
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-title">${exp.title}</div>
+                                <div class="exp-company">${exp.company}</div>
+                            </div>
+                            <div class="exp-date">${exp.date}</div>
+                        </div>
+                        <p class="exp-description">${exp.description}</p>
+                        <ul class="exp-highlights">
+                            ${exp.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+                        </ul>
+                        <div class="exp-tools">
+                            ${exp.tools.map(tool => `<span class="tool-badge">${tool}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // SKILLS CATEGORY SWITCHING
+        // ═══════════════════════════════════════════════════════════════
+        
+        function showSkillCategory(event, category) {
+            document.querySelectorAll('.skills-grid').forEach(grid => {
+                grid.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.skill-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(category).style.display = 'grid';
+            event.target.classList.add('active');
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // NAVBAR ACTIVE LINK MANAGEMENT
+        // ═══════════════════════════════════════════════════════════════
+        
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // NAVBAR SCROLL EFFECT
+        // ═══════════════════════════════════════════════════════════════
+        
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            updateActiveNavLink();
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // DOWNLOAD CV FUNCTION
+        // ═══════════════════════════════════════════════════════════════
+        
+        function downloadResume() {
+            const resumeContent = `
+AKHILESH GAJULA
+AWS Cloud & DevOps Engineer
+Email: akhilesh.gajula.it@gmail.com
+LinkedIn: https://www.linkedin.com/in/gajula-akhilesh-cloud-engineer/
+GitHub: https://github.com/akhileshgajulaa
+
+PROFESSIONAL SUMMARY
+Data Operations and Analytics professional with 4 years of experience transitioning to AWS Cloud and DevOps Engineering. 
+Strong foundation in data management, process automation, and problem-solving. 
+Hands-on experience designing and deploying scalable AWS infrastructure and Infrastructure as Code solutions.
+
+SKILLS
+Cloud & Infrastructure: AWS, VPC, EC2, RDS, ALB, Route 53, CloudFront, ACM, KMS, WAF
+DevOps & IaC: Terraform, CloudFormation, Ansible, Docker, Kubernetes, Jenkins, GitLab CI
+Tools & Platforms: Linux, Bash, Python, Git, YAML, VS Code
+Databases: RDS, S3, DynamoDB, MongoDB, PostgreSQL, Redis
+
+PROJECTS
+1. AWS High Available 3-Tier Architecture
+   - Deployed multi-AZ architecture with VPC, EC2, RDS, ALB, and Auto Scaling
+   - Implemented security groups and network segmentation
+
+2. AWS Highly Available Secure Java Web Application
+   - Deployed with WAF, CloudFront, Route 53, ACM for security and global delivery
+
+3. AWS 3-Tier Architecture using Terraform
+   - Created reusable Terraform modules for infrastructure automation
+   - Implemented state management with S3 and DynamoDB
+
+EXPERIENCE
+Current: AWS Cloud & DevOps Engineer (Jun 2024 - Present)
+         Designing and deploying highly available AWS infrastructure
+         
+Previous: Research Associate & Data Analyst (2019 - 2024)
+          4 years managing data operations, MIS reporting, and process automation
+            `;
+            
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(resumeContent));
+            element.setAttribute('download', 'Akhilesh_Gajula_CV.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // INITIALIZATION
+        // ═══════════════════════════════════════════════════════════════
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+            renderExperience();
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
